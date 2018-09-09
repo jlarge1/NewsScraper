@@ -100,13 +100,12 @@ module.exports = function (app) {
         return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { comments: dbComment._id } }, { new: true });
       })
       .then(function () {
-        // db.Article.find({})
-        //   .then(function (response) {
-        //     res.render("index", { data: response });
-        //   }).catch(function (error) {
-        //     res.json(error);
-        //   });
-        window.location.href = "/"
+        db.Article.find({})
+          .then(function (response) {
+            res.render("index", { data: response });
+          }).catch(function (error) {
+            res.json(error);
+          });
       })
       .catch(function (err) {
         // If an error occurs, send it back to the client

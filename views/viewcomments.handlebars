@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h2>{{{data.title}}}</h2><br>
+            {{#if data.comments}}
+            <h3>Comments on this article:</h3>
+            {{else}}
+            <h3>No comments yet!</h3>
+            {{/if}}
+            <br>
+            <ul class="list-group">
+                {{#each data.comments}}
+                <li data-id="{{this.id}}" class="list-group-item">
+                    <h5>{{this.author}}</h5>
+                    <p>{{this.body}}</p>
+                    <small class="form-text text-muted">{{this.date}}</small>
+                </li>
+                {{/each}}
+            </ul>
+            <br><br>
+
+            <form action="/comment/{{data.id}}">
+                <button type="submit" class="btn btn-primary">Add a comment</button>
+            </form>
+
+        </div>
+    </div>
+</div>
